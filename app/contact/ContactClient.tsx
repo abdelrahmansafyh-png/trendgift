@@ -3,12 +3,9 @@
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import SocialIcons from "@/components/SocialIcons";
 import type { ContactSettings, SiteSettings } from "@/lib/data";
-import { getLocaleFromDocument, pick } from "@/lib/ui";
+import { cleanWhatsAppPhone, getLocaleFromDocument, pick } from "@/lib/ui";
 import { useEffect, useMemo, useState } from "react";
 
-function cleanWhatsApp(phone: string) {
-  return (phone || "").replace(/\D/g, "");
-}
 
 const copy = {
   ar: {
@@ -50,7 +47,7 @@ export default function ContactClient({ contact }: { settings: SiteSettings; con
   }, []);
 
   const t = copy[locale];
-  const whatsappPhone = cleanWhatsApp(contact.whatsapp);
+  const whatsappPhone = cleanWhatsAppPhone(contact.whatsapp || settings.whatsapp);
   const whatsappHref = useMemo(() => `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(t.message)}`, [whatsappPhone, t.message]);
 
   return (

@@ -296,8 +296,14 @@ export default function StoryBuilderAdmin() {
 
           <div className="three-cols">
             <label>نص الزر<input value={screen.buttonText} onChange={(e) => updateScreen({ buttonText: e.target.value })} /></label>
-            <label>Action<select value={screen.buttonAction} onChange={(e) => updateScreen({ buttonAction: e.target.value as any })}><option value="next">التالي</option><option value="prev">السابق</option><option value="link">رابط</option><option value="whatsapp">واتساب</option><option value="none">بدون زر</option></select></label>
-            <label>رابط/رقم<input dir="ltr" value={screen.buttonUrl} onChange={(e) => updateScreen({ buttonUrl: e.target.value })} /></label>
+            <label>Action<select value={screen.buttonAction} onChange={(e) => updateScreen({ buttonAction: e.target.value as any, buttonUrl: e.target.value === "whatsapp" ? "" : screen.buttonUrl })}><option value="next">التالي</option><option value="prev">السابق</option><option value="link">رابط</option><option value="whatsapp">واتساب</option><option value="none">بدون زر</option></select></label>
+            {screen.buttonAction === "link" ? (
+              <label>رابط الزر<input dir="ltr" value={screen.buttonUrl} onChange={(e) => updateScreen({ buttonUrl: e.target.value })} /></label>
+            ) : screen.buttonAction === "whatsapp" ? (
+              <div className="story-admin-note">سيستخدم رقم واتساب الموجود في صفحة تواصل معنا.</div>
+            ) : (
+              <div />
+            )}
           </div>
           <button className="danger" onClick={removeScreen}>حذف الشاشة</button>
         </div>

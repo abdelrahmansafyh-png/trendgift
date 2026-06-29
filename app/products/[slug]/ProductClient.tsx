@@ -3,7 +3,7 @@ import { type ContactSettings, type Product, type SiteSettings } from "@/lib/dat
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { useEffect, useState } from "react";
-import { getLocaleFromDocument, pick } from "@/lib/ui";
+import { cleanWhatsAppPhone, getLocaleFromDocument, pick } from "@/lib/ui";
 
 /* ─── ADHKAR DEMO ─── */
 function AdhkarDemo() {
@@ -392,7 +392,8 @@ export default function ProductClient({ product, settings, contactSettings }: { 
     const msg = locale === "en"
       ? `Hello, I would like to ask about: ${pick(locale, product.name, product.nameEn)} (${product.price} QAR)`
       : `مرحبا، أريد الاستفسار عن: ${pick(locale, product.name, product.nameEn)} (${product.price} QAR)`;
-    window.open(`https://wa.me/${settings.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
+    const whatsappPhone = cleanWhatsAppPhone(contactSettings?.whatsapp || settings.whatsapp);
+    window.open(`https://wa.me/${whatsappPhone}?text=${encodeURIComponent(msg)}`, "_blank");
   };
 
   return (

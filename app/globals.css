@@ -1486,3 +1486,13 @@ html[dir="ltr"] .enOnly{display:inline;}
   background:transparent;
   border:1px solid rgba(214,169,69,.18);
 }
+
+.story-admin-note{
+  border:1px solid var(--line);
+  background:var(--glass);
+  color:var(--muted);
+  border-radius:14px;
+  padding:12px 14px;
+  font-size:13px;
+  line-height:1.6;
+}

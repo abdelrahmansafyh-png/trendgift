@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { StoryPage, StoryScreen } from "@/lib/story/types";
+import { cleanWhatsAppPhone } from "@/lib/ui";
 
 function hexToRgba(hex: string | undefined, opacity: number) {
   const value = (hex || "#ffffff").replace("#", "");
@@ -43,7 +44,7 @@ function Media({ screen }: { screen: StoryScreen }) {
   return null;
 }
 
-export default function StoryRenderer({ story, preview = false }: { story: StoryPage; preview?: boolean }) {
+export default function StoryRenderer({ story, preview = false, whatsappPhone = "97400000000" }: { story: StoryPage; preview?: boolean; whatsappPhone?: string }) {
   const [index, setIndex] = useState(0);
   const screen = story.screens[index] || story.screens[0];
 
@@ -53,7 +54,7 @@ export default function StoryRenderer({ story, preview = false }: { story: Story
     if (screen.buttonAction === "next") setIndex((i) => Math.min(i + 1, story.screens.length - 1));
     if (screen.buttonAction === "prev") setIndex((i) => Math.max(i - 1, 0));
     if (screen.buttonAction === "link" && screen.buttonUrl) window.open(screen.buttonUrl, "_blank");
-    if (screen.buttonAction === "whatsapp") window.open(`https://wa.me/${screen.buttonUrl || "97400000000"}`, "_blank");
+    if (screen.buttonAction === "whatsapp") window.open(`https://wa.me/${cleanWhatsAppPhone(whatsappPhone)}`, "_blank");
   };
 
   const bgStyle: React.CSSProperties = {

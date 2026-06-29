@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { categoryItems as fallbackCategories, defaultSettings, products as fallbackProducts, type Category, type Locale, type Product, type SiteSettings } from "@/lib/data";
-import { getLocaleFromDocument, pick, pickList } from "@/lib/ui";
+import { categoryItems as fallbackCategories, defaultSettings, products as fallbackProducts, type Category, type ContactSettings, type Locale, type Product, type SiteSettings } from "@/lib/data";
+import { cleanWhatsAppPhone, getLocaleFromDocument, pick, pickList } from "@/lib/ui";
 
 function useLocale() {
   const [locale, setLocale] = useState<Locale>("ar");
@@ -247,7 +247,7 @@ export function Customizer() {
   );
 }
 
-export function CustomOrder({ products = fallbackProducts, settings = defaultSettings }: { products?: Product[]; settings?: SiteSettings }) {
+export function CustomOrder({ products = fallbackProducts, settings = defaultSettings, contactSettings }: { products?: Product[]; settings?: SiteSettings; contactSettings?: ContactSettings }) {
   const locale = useLocale();
   const t = copy[locale];
   const activeProducts = products.filter((p) => p.active !== false);
@@ -319,7 +319,8 @@ export function CustomOrder({ products = fallbackProducts, settings = defaultSet
             `الوصف: ${f.get("desc")}`,
             filesMessage,
           ].filter(Boolean).join("\n");
-          window.open(`https://wa.me/${settings.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
+          const whatsappPhone = cleanWhatsAppPhone(contactSettings?.whatsapp || settings.whatsapp);
+          window.open(`https://wa.me/${whatsappPhone}?text=${encodeURIComponent(msg)}`, "_blank");
         }}
       >
         <input name="name" placeholder={t.name} required />

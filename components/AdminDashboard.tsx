@@ -30,6 +30,10 @@ function joinLines(value?: string[]) {
   return (value || []).join("\n");
 }
 
+function whatsappDigits(value: string) {
+  return value.replace(/\D/g, "");
+}
+
 async function adminSave(table: string, payload: Record<string, unknown>) {
   const res = await fetch("/api/admin/cms", {
     method: "POST",
@@ -415,7 +419,7 @@ export default function AdminDashboard({ initialTab = "products" }: { initialTab
             <div className="admin-section-head"><h1>إعدادات الموقع</h1></div>
             <div className="settings-form">
               <label>رقم الواتساب بدون +
-                <input value={cms.settings.whatsapp} onChange={e => setCms({ ...cms, settings: { ...cms.settings, whatsapp: e.target.value } })} placeholder="97412345678" dir="ltr" />
+                <input value={cms.settings.whatsapp} onChange={e => setCms({ ...cms, settings: { ...cms.settings, whatsapp: whatsappDigits(e.target.value) } })} placeholder="97412345678" dir="ltr" />
               </label>
               <label>اسم المتجر
                 <input value={cms.settings.siteName} onChange={e => setCms({ ...cms, settings: { ...cms.settings, siteName: e.target.value } })} />
@@ -446,7 +450,7 @@ export default function AdminDashboard({ initialTab = "products" }: { initialTab
               <div className="twoCols"><label>العنوان عربي<input value={cms.contactSettings.title} onChange={e => setCms({ ...cms, contactSettings: { ...cms.contactSettings, title: e.target.value } })} /></label><label>Title English<input value={cms.contactSettings.titleEn} onChange={e => setCms({ ...cms, contactSettings: { ...cms.contactSettings, titleEn: e.target.value } })} dir="ltr" /></label></div>
               <label>الوصف عربي<textarea rows={3} value={cms.contactSettings.subtitle} onChange={e => setCms({ ...cms, contactSettings: { ...cms.contactSettings, subtitle: e.target.value } })} /></label>
               <label>Description English<textarea rows={3} value={cms.contactSettings.subtitleEn} onChange={e => setCms({ ...cms, contactSettings: { ...cms.contactSettings, subtitleEn: e.target.value } })} dir="ltr" /></label>
-              <div className="twoCols"><label>واتساب<input value={cms.contactSettings.whatsapp} onChange={e => setCms({ ...cms, contactSettings: { ...cms.contactSettings, whatsapp: e.target.value } })} dir="ltr" /></label><label>Email<input value={cms.contactSettings.email} onChange={e => setCms({ ...cms, contactSettings: { ...cms.contactSettings, email: e.target.value } })} dir="ltr" /></label></div>
+              <div className="twoCols"><label>واتساب<input value={cms.contactSettings.whatsapp} onChange={e => setCms({ ...cms, contactSettings: { ...cms.contactSettings, whatsapp: whatsappDigits(e.target.value) } })} dir="ltr" /></label><label>Email<input value={cms.contactSettings.email} onChange={e => setCms({ ...cms, contactSettings: { ...cms.contactSettings, email: e.target.value } })} dir="ltr" /></label></div>
               <div className="twoCols"><label>العنوان عربي<input value={cms.contactSettings.address} onChange={e => setCms({ ...cms, contactSettings: { ...cms.contactSettings, address: e.target.value } })} /></label><label>Address English<input value={cms.contactSettings.addressEn} onChange={e => setCms({ ...cms, contactSettings: { ...cms.contactSettings, addressEn: e.target.value } })} dir="ltr" /></label></div>
               <div className="twoCols"><label>Instagram<input value={cms.contactSettings.instagram} onChange={e => setCms({ ...cms, contactSettings: { ...cms.contactSettings, instagram: e.target.value } })} dir="ltr" /></label><label>Facebook<input value={cms.contactSettings.facebook} onChange={e => setCms({ ...cms, contactSettings: { ...cms.contactSettings, facebook: e.target.value } })} dir="ltr" /></label></div>
               <div className="twoCols"><label>TikTok<input value={cms.contactSettings.tiktok} onChange={e => setCms({ ...cms, contactSettings: { ...cms.contactSettings, tiktok: e.target.value } })} dir="ltr" /></label><label>Website<input value={cms.contactSettings.website} onChange={e => setCms({ ...cms, contactSettings: { ...cms.contactSettings, website: e.target.value } })} dir="ltr" /></label></div>

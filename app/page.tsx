@@ -13,7 +13,7 @@ export default async function Home() {
       <HeroSlider slides={cms.heroSlides} settings={cms.settings} />
       <Categories categories={cms.categories} />
       <Products products={cms.products} />
-      <CustomOrder products={cms.products} settings={cms.settings} />
+      <CustomOrder products={cms.products} settings={cms.settings} contactSettings={cms.contactSettings} />
       <div style={{ height: "50px" }} />
       <Business />
       <SocialIcons contact={cms.contactSettings} variant="home" showTitle />

@@ -12,3 +12,9 @@ export function getLocaleFromDocument(): Locale {
   if (typeof document === "undefined") return "ar";
   return document.documentElement.dir === "ltr" ? "en" : "ar";
 }
+
+
+export function cleanWhatsAppPhone(phone?: string) {
+  const digits = String(phone || "").replace(/\D/g, "");
+  return digits || "97400000000";
+}
