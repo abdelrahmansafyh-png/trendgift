@@ -1447,7 +1447,7 @@ html[dir="ltr"] .enOnly{display:inline;}
   padding:6px 10px;
   border-radius:20px;
   overflow:hidden;
-  background:#030303;
+  background:#FFFFFF;
   border:1px solid rgba(214,169,69,.28);
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
 }
@@ -1480,10 +1480,10 @@ html[dir="ltr"] .enOnly{display:inline;}
 }
 .footerLogo{
   width:180px;
-  max-width:70vw;
+  max-width:180px;
   height:auto;
   display:block;
   border-radius:14px;
-  background:#030303;
+  background:#FFFFFF;
   border:1px solid rgba(214,169,69,.18);
 }
