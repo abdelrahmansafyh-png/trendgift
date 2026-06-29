@@ -388,10 +388,13 @@ export default function ProductClient({ product, settings, contactSettings }: { 
   }, []);
   const demo = product.showInteractive === false ? null : getDemo(product.slug);
 
+  const showPrices = settings.showProductPrices !== false;
+
   const sendWhatsApp = () => {
+    const productName = pick(locale, product.name, product.nameEn);
     const msg = locale === "en"
-      ? `Hello, I would like to ask about: ${pick(locale, product.name, product.nameEn)} (${product.price} QAR)`
-      : `مرحبا، أريد الاستفسار عن: ${pick(locale, product.name, product.nameEn)} (${product.price} QAR)`;
+      ? `Hello, I would like to ask about: ${productName}${showPrices ? ` (${product.price} QAR)` : ""}`
+      : `مرحبا، أريد الاستفسار عن: ${productName}${showPrices ? ` (${product.price} QAR)` : ""}`;
     const whatsappPhone = cleanWhatsAppPhone(contactSettings?.whatsapp || settings.whatsapp);
     window.open(`https://wa.me/${whatsappPhone}?text=${encodeURIComponent(msg)}`, "_blank");
   };
@@ -414,7 +417,7 @@ export default function ProductClient({ product, settings, contactSettings }: { 
               {(locale === "en" ? product.featuresEn?.length ? product.featuresEn : product.features : product.features).map(f => <span key={f}>✓ {f}</span>)}
             </div>
             <div className="pp-price-box">
-              <span className="pp-unit">{product.price} QAR</span>
+              {showPrices && <span className="pp-unit">{product.price} QAR</span>}
               <span className="pp-delivery">{locale === "en" ? "Delivery within " : "التسليم خلال "}{pick(locale, product.deliveryDays, product.deliveryDaysEn)}</span>
             </div>
             <button className="pp-order-btn primaryBtn" onClick={sendWhatsApp}>

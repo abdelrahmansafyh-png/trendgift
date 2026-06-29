@@ -12,7 +12,7 @@ export default async function Home() {
       <Navbar settings={cms.settings} showContact={cms.contactSettings.showContactPage !== false} />
       <HeroSlider slides={cms.heroSlides} settings={cms.settings} />
       <Categories categories={cms.categories} />
-      <Products products={cms.products} />
+      <Products products={cms.products} showPrices={cms.settings.showProductPrices !== false} />
       <CustomOrder products={cms.products} settings={cms.settings} contactSettings={cms.contactSettings} />
       <div style={{ height: "50px" }} />
       <Business />

@@ -67,6 +67,7 @@ export type SiteSettings = {
   tagline: string;
   whatsapp: string;
   heroAutoplayMs: number;
+  showProductPrices: boolean;
 };
 
 export type ContactSettings = {
@@ -92,6 +93,7 @@ export const defaultSettings: SiteSettings = {
   tagline: "Custom · NFC · Gifts",
   whatsapp: "97400000000",
   heroAutoplayMs: 6500,
+  showProductPrices: true,
 };
 
 export const defaultContactSettings: ContactSettings = {

@@ -150,7 +150,7 @@ export function Categories({ categories = fallbackCategories }: { categories?: C
   );
 }
 
-export function Products({ products = fallbackProducts }: { products?: Product[] }) {
+export function Products({ products = fallbackProducts, showPrices = true }: { products?: Product[]; showPrices?: boolean }) {
   const locale = useLocale();
   const t = copy[locale];
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>({ id: "all", name: t.all, nameEn: t.all });
@@ -190,7 +190,7 @@ export function Products({ products = fallbackProducts }: { products?: Product[]
               <strong>{pick(locale, p.name, p.nameEn)}</strong>
               <small>{pick(locale, p.tag, p.tagEn)} • {pick(locale, p.material, p.materialEn)}</small>
               <div className="product-bottom">
-                <b>QAR {p.price}</b>
+                {showPrices && <b>QAR {p.price}</b>}
                 <Link href={`/products/${p.slug}`} className="product-btn">{t.orderNow}</Link>
               </div>
             </div>

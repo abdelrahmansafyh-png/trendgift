@@ -180,6 +180,7 @@ function settingsToDb(s: SiteSettings) {
     tagline: s.tagline,
     whatsapp: s.whatsapp,
     hero_autoplay_ms: s.heroAutoplayMs,
+    show_product_prices: s.showProductPrices !== false,
   };
 }
 
@@ -429,6 +430,14 @@ export default function AdminDashboard({ initialTab = "products" }: { initialTab
               </label>
               <label>سرعة تغيير الهيرو بالمللي ثانية
                 <input type="number" value={cms.settings.heroAutoplayMs} onChange={e => setCms({ ...cms, settings: { ...cms.settings, heroAutoplayMs: Number(e.target.value) } })} />
+              </label>
+              <label className="checkLine">
+                <input
+                  type="checkbox"
+                  checked={cms.settings.showProductPrices !== false}
+                  onChange={e => setCms({ ...cms, settings: { ...cms.settings, showProductPrices: e.target.checked } })}
+                />
+                إظهار أسعار المنتجات في الموقع
               </label>
               <div className="settings-info">
                 <h3>ملاحظات مهمة</h3>

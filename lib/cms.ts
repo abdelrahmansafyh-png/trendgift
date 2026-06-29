@@ -104,6 +104,7 @@ export async function getCmsData(): Promise<CmsData> {
       tagline: settingsRes.data.tagline || defaultSettings.tagline,
       whatsapp: settingsRes.data.whatsapp || defaultSettings.whatsapp,
       heroAutoplayMs: settingsRes.data.hero_autoplay_ms || defaultSettings.heroAutoplayMs,
+      showProductPrices: settingsRes.data.show_product_prices !== false,
     } : defaultSettings;
 
     const contact: ContactSettings = contactRes.data ? {
