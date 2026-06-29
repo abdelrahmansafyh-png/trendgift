@@ -36,7 +36,13 @@ const copy = {
   },
 };
 
-export default function ContactClient({ contact }: { settings: SiteSettings; contact: ContactSettings }) {
+export default function ContactClient({
+  settings,
+  contact,
+}: {
+  settings: SiteSettings;
+  contact: ContactSettings;
+}) {
   const [locale, setLocale] = useState<"ar" | "en">("ar");
 
   useEffect(() => {
