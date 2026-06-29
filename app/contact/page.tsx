@@ -14,6 +14,7 @@ export default async function ContactPage() {
   return (
     <>
       <Navbar settings={cms.settings} showContact={true} />
+      <div style={{ height: "70px" }} />
       <ContactClient settings={cms.settings} contact={contact} />
     </>
   );
