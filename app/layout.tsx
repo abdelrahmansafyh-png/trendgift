@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  title: "TrendGift | Custom Gifts, NFC & QR Gifts",
-  description: "TrendGift متجر هدايا مخصصة ومنتجات NFC و QR وصفحات ذكية للهدايا والبزنس.",
+export const metadata = {
+  title: "TrendGift",
+  description: "Custom gifts, NFC, QR and 3D printing",
   icons: {
     icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon.png", type: "image/png", sizes: "512x512" },
+      {
+        url: "/favicon.png?v=20",
+        type: "image/png",
+        sizes: "32x32",
+      },
     ],
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    shortcut: "/favicon.png?v=20",
+    apple: "/apple-touch-icon.png?v=20",
   },
 };
 
