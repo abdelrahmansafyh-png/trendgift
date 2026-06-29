@@ -1447,9 +1447,7 @@ html[dir="ltr"] .enOnly{display:inline;}
   padding:6px 10px;
   border-radius:20px;
   overflow:hidden;
-  background:#FFFFFF;
-  border:1px solid rgba(214,169,69,.28);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
+  background:transparent;
 }
 .siteLogoImg{
   width:100%;
@@ -1475,6 +1473,7 @@ html[dir="ltr"] .enOnly{display:inline;}
   display:flex;
   flex-direction:column;
   align-items:center;
+  background:transparent;
   justify-content:center;
   gap:10px;
 }
@@ -1484,6 +1483,6 @@ html[dir="ltr"] .enOnly{display:inline;}
   height:auto;
   display:block;
   border-radius:14px;
-  background:#FFFFFF;
+  background:transparent;
   border:1px solid rgba(214,169,69,.18);
 }
